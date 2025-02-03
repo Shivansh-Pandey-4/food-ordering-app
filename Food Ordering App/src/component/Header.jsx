@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {LOGO_URL} from "../utils/constant";
+import useOnlineStatus from "../Hooks/useOnlineStatus";
 
 
 const Header=()=>{
     const [btn,setBtn]=useState("LogIn");
+
     return (
         <div className="headingContainer">
            <div className="logoContainer">
@@ -12,6 +14,7 @@ const Header=()=>{
            <div className="navContainer">
                <nav>
                   <ul>
+                    <li>{useOnlineStatus() ? "🟢 Online": "🔴 Offline"}</li>
                      <li>Home</li>
                      <li><a href="/about">About</a></li>
                      <li><a href="/contact">Contact</a></li>

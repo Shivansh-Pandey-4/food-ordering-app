@@ -2,6 +2,7 @@ import ResCard from "./ResCard";
 import {useEffect, useState} from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router";
+import useOnlineStatus from "../Hooks/useOnlineStatus";
 
 
 const Body=()=>{
@@ -22,6 +23,11 @@ const Body=()=>{
       setResData(response.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
       setCopyResData(response.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
    }
+
+   const onlineStatus=useOnlineStatus();
+
+   if(onlineStatus === false)
+       return <> <h1>You are offline ! Plz check your internet connection. </h1></>
   
     return(resData.length==0) ? (<ShimmerUI></ShimmerUI>) :(
        <div className="bodyContainer">
