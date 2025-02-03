@@ -30,14 +30,15 @@ const Body=()=>{
        return <> <h1>You are offline ! Plz check your internet connection. </h1></>
   
     return(resData.length==0) ? (<ShimmerUI></ShimmerUI>) :(
-       <div className="bodyContainer">
-         <div className="searchContainer">
+       <div className="">
 
-            <input type="text" placeholder="Search Restaurant" value={searchBtn} onChange={(e)=>{
+         <div className="m-5 text-center inline-block ">
+
+            <input className="bg-amber-700 rounded-2xl mr-4 p-3 w-100 text-black font-extrabold" type="text" placeholder="Search Restaurant" value={searchBtn} onChange={(e)=>{
                 setSearchBtn(e.target.value);
             }}></input>
 
-            <button onClick={()=>{
+            <button className="bg-orange-300 p-2 rounded-lg cursor-pointer px-3 font-bold" onClick={()=>{
               const filteredRes=resData.filter((obj)=>{
                   if(obj.info.name.toLowerCase().includes(searchBtn.toLowerCase()))
                      return obj;                
@@ -46,8 +47,8 @@ const Body=()=>{
             }}>Search</button>
          </div>
 
-         <div className="topRatedRestaurant">
-            <button id="filter" onClick={()=>{
+         <div className="inline-block bg-amber-400 p-2 rounded-2xl text-lg font-semibold ">
+            <button className="cursor-pointer" id="filter" onClick={()=>{
               let newData;
                newData=resData.filter((obj)=>{
                     if(obj.info.avgRating>=4.2)
@@ -57,7 +58,7 @@ const Body=()=>{
             }}>Top Rated Restaurant</button>
          </div>
 
-         <div className="restaurantContainer">
+         <div className="flex-wrap flex">
              {
                copyResData.map((obj)=>{
                  return <Link key={obj.info.id} to={"/restaurant/"+obj.info.id}> <ResCard res={obj} /></Link>

@@ -19,18 +19,18 @@ const RestaurantMenu=()=>{
      const{itemCards}=resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
 
     return (
-     <div className="menuContainer">
-         <h1>{name}</h1>
-         <img src={FOOD_URL+cloudinaryImageId} alt="Restaurant Img" className="resImage"></img>
-         <h2>Menu: {cuisines.join(", ")} --- {costForTwoMessage}</h2>
+     <div className="text-center m-auto">
+         <h1 className="text-4xl py-10">{name}</h1>
+         <img src={FOOD_URL+cloudinaryImageId} alt="Restaurant Img" className="w-xl border-2 m-auto"></img>
+         <h2 className="text-2xl">Menu: {cuisines.join(", ")} --- {costForTwoMessage}</h2>
          <ul>
-             <h2>Recommend For You:</h2>
+             <h2 className="text-2xl py-5">Items Recommend For You:</h2>
             {
                   itemCards.map((item)=>{
                      return (
-                        <div key={item.card.info.id} className="resFood">
-                            <li><b>{item.card.info.name} ₹{item.card.info.defaultPrice/100 || item.card.info.price/100} </b></li>
-                            <img className="foodImage" src={FOOD_URL+item.card.info.imageId}></img>
+                        <div key={item.card.info.id} className="my-10">
+                            <li className="text-2xl"><b>{item.card.info.name} ₹{item.card.info.defaultPrice/100 || item.card.info.price/100} </b></li>
+                            <img className="w-80 m-auto" src={FOOD_URL+item.card.info.imageId}></img>
                         </div>
                      )
                   })
