@@ -1,4 +1,4 @@
-import myImage1 from "../assest/myImage1.jpg"
+import myImage1 from "../assets/myImage1.jpg"
 
 const Contact=()=>{
     return (

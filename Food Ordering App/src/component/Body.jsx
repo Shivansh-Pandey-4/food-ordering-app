@@ -22,6 +22,7 @@ const Body=()=>{
       console.log(response);
       setResData(response.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
       setCopyResData(response.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+      console.log(response.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
    }
 
    const onlineStatus=useOnlineStatus();
@@ -61,7 +62,7 @@ const Body=()=>{
          <div className="flex-wrap flex">
              {
                copyResData.map((obj)=>{
-                 return <Link key={obj.info.id} to={"/restaurant/"+obj.info.id}> <ResCard res={obj} /></Link>
+                 return <Link key={obj.info.id} to={"/restaurant/"+obj.info.id}> <ResCard res={obj} />     </Link>
                })
              }
          </div>
