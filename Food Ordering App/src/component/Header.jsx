@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState , useContext } from "react";
 import {LOGO_URL} from "../utils/constant";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import { Link } from "react-router";
+import UserContext from "../utils/UserContext";
+
 
 
 const Header=()=>{
     const [btn,setBtn]=useState("LogIn");
+    const userData= useContext(UserContext);
 
     return (
         <div className="flex justify-between m-2 shadow-xl rounded-lg bg-pink-200">
@@ -24,6 +27,7 @@ const Header=()=>{
                         return(btn=="LogIn")?(setBtn("LogOut")):(setBtn("LogIn"))
                         // console.log("hello world");
                      }}>{btn}</button>
+                     <li className="px-3  hover:text-amber-600">{userData.loggedInUser}</li>
                   </ul>
                </nav>
            </div>

@@ -7,6 +7,7 @@ import Error from "./component/Error";
 import About from "./component/About";
 import RestaurantMenu from "./component/RestaurantMenu"
 import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
+import UserContext from "./utils/UserContext";
 
 
 
@@ -20,8 +21,10 @@ import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
 const App=()=>{
     return (
         <div>
-         <Header></Header>
-         <Outlet/>
+        <UserContext.Provider value={{loggedInUser:"Shivansh"}}>
+          <Header></Header>
+          <Outlet/>
+        </UserContext.Provider>
         </div>
     )
 };

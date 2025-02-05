@@ -4,12 +4,14 @@ import { FOOD_URL } from "../utils/constant";
 const ItemList=(props)=>{
 
    const {data}=props;
+   console.log(data);
     
     return (
         <div>
            {
               data.map((item)=>{
                   return(
+
                      <div key={item.card.info.id} className="m-3 p-3 border-2 text-left">
                      <div className="" >
                          <img className="w-30" src={FOOD_URL + item.card.info.imageId}></img>

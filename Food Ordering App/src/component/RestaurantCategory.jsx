@@ -10,12 +10,13 @@ const RestaurantCategory=(props)=>{
     }
 
     const {itemCards,title}=props.data;
+   
 
     return (
         <div className=" mx-auto bg-slate-200 my-6 rounded-2xl shadow-lg p-2 w-6/12 font-bold text-xl">
 
          <div className="flex justify-between cursor-pointer" onClick={showMore}>
-            <span>{title } ({itemCards.length})</span>
+            <span>{title } </span>
             <span>🔽</span>
          </div>
 

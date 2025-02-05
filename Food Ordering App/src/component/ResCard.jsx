@@ -1,6 +1,10 @@
 import {FOOD_URL} from "../utils/constant";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const ResCard=(props)=>{
+    const data=useContext(UserContext);
+
    //  console.log(props);
     const {res}=props;
     const{name,cuisines,avgRating,cloudinaryImageId}=res.info;
@@ -11,6 +15,7 @@ const ResCard=(props)=>{
            <h2 className="py-1">Cuisines: {cuisines.join(", ")}</h2>
            <h3 className="py-1">DeliveryTime: 20min</h3>
            <h3 className="py-1">Rating: {avgRating} stars</h3>
+           <h3 className="py-1"> {data.loggedInUser}</h3>
         </div>
      )
 };
