@@ -1,23 +1,17 @@
-import {FOOD_URL} from "../utils/constant";
-import UserContext from "../utils/UserContext";
-import { useContext } from "react";
+import  {FOOD_URL}  from "../utils/constant";
 
-const ResCard=(props)=>{
-    const data=useContext(UserContext);
+const ResCard = (props)=>{
+     const {cuisines,cloudinaryImageId,name,costForTwo,avgRating} = props?.resData?.info;
 
-   //  console.log(props);
-    const {res}=props;
-    const{name,cuisines,avgRating,cloudinaryImageId}=res.info;
      return (
-        <div className="p-3 w-72 border-2 m-5 bg-slate-300 text-center text-xl hover:bg-red-200 rounded-2xl">
-           <img className="w-70 bg-center m-auto" src={FOOD_URL+cloudinaryImageId} alt="food Image"></img>
-           <h2 className="py-2 text-3xl">{name}</h2>
-           <h2 className="py-1">Cuisines: {cuisines.join(", ")}</h2>
-           <h3 className="py-1">DeliveryTime: 20min</h3>
-           <h3 className="py-1">Rating: {avgRating} stars</h3>
-           <h3 className="py-1"> {data.loggedInUser}</h3>
-        </div>
+         <div className="border-2 w-65 p-2 text-center text-xl mb-10 rounded-xl hover:bg-green-100 cursor-pointer">
+             <img className="w-60 h-55 rounded-xl" src={FOOD_URL + cloudinaryImageId} alt="logo-img" />
+             <h2 className="p-2 font-bold underline">{name}</h2>
+             <p className="p-2">Cuisine : {cuisines.join(",  ")}</p>
+             <h3 className="p-2">Price : {costForTwo}</h3>
+             <h4 className="p-2">Rating : {avgRating} stars</h4>
+         </div>
      )
-};
+}
 
 export default ResCard;

@@ -8,6 +8,7 @@ import About from "./component/About";
 import RestaurantMenu from "./component/RestaurantMenu"
 import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
 import UserContext from "./utils/UserContext";
+import Footer from "./component/Footer";
 
 
 
@@ -24,6 +25,7 @@ const App=()=>{
         <UserContext.Provider value={{loggedInUser:"Shivansh"}}>
           <Header></Header>
           <Outlet/>
+          <Footer/>
         </UserContext.Provider>
         </div>
     )
@@ -33,6 +35,7 @@ const appRoute=createBrowserRouter([
     {
         path: "/",
         element: <App/>,
+        errorElement : <Error/>,
         children: [
             {
                 path:"/",
@@ -50,29 +53,10 @@ const appRoute=createBrowserRouter([
                 path:"/restaurant/:resId",
                 element:<RestaurantMenu></RestaurantMenu>
             },
-            {
-                path: "*",
-                element: <Error></Error>
-            }
         ]
     },
    
 ])
-
-// const AppRoute=()=>{
-//     return (
-//         <BrowserRouter>
-//           <Routes>
-//              <Route path="/" element={<App></App>}  /> 
-//              <Route path="/contact" element={<Contact></Contact>}/>
-//              <Route path="/about" element={<About></About>}/>
-//              <Route path="/restaurant/:resId" element={<RestaurantMenu></RestaurantMenu>} />
-//              <Route path="*" element={<Error></Error>}  />
-//           </Routes>
-//         </BrowserRouter>
-//     )
-// };
-
 
 
 const root=ReactDOM.createRoot(document.getElementById("root"));

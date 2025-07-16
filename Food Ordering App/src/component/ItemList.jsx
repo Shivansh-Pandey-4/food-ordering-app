@@ -1,6 +1,5 @@
 import { FOOD_URL } from "../utils/constant";
 
-// this is the body of the accordian list.
 const ItemList=(props)=>{
 
    const {data}=props;
@@ -11,17 +10,34 @@ const ItemList=(props)=>{
            {
               data.map((item)=>{
                   return(
+                  <div className="rounded-2xl my-5 border hover:bg-blue-100 p-4 justify-between items-center" key={item.card.info.id}>
+              <div className="text-lg mr-10 flex-1">
+                <h1 className="py-2 underline font-bold">
+                  {item.card.info.name}
+                </h1>
+                <p className="py-2 font-light text-[15px] font-mono">
+                  Description: {item.card.info.description}
+                </p>
+                <h2 className="py-2 font-semibold">
+                  Price: ₹
+                  {item.card.info.price / 100 ||
+                    item.card.info.defaultPrice / 100}
+                </h2>
+              </div>
 
-                     <div key={item.card.info.id} className="m-3 p-3 border-2 text-left">
-                     <div className="" >
-                         <img className="w-30" src={FOOD_URL + item.card.info.imageId}></img>
-                         <h1 className="text-lg">{item.card.info.name}</h1>
-                         <h2 className="py-3">Rs. {item.card.info.price/100 || item.card.info. defaultPrice/100}</h2>
-
-                     </div>
-                         <p className="text-xs">{item.card.info.description}</p> 
-
-                     </div>
+              <div className="relative w-48 aspect-square">
+                <img
+                  className="w-50 h-50 object-cover border rounded-2xl"
+                  src={FOOD_URL + item.card.info.imageId}
+                  alt="food-img"
+                />
+                <button
+                  className="cursor-pointer absolute bottom-0 right-1/2 translate-x-1/2 translate-y-1/2 bg-white border px-3 py-1 rounded-lg shadow hover:bg-green-300"
+                >
+                    ADD
+                </button>
+              </div>
+            </div>
                      )
               })
            }
