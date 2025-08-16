@@ -17,7 +17,7 @@ const RestaurantCategory=(props)=>{
 
          <div className="flex justify-between cursor-pointer " onClick={showMore}>
             <span className="pl-3">{title } ({itemCards.length}) </span>
-            <span className="pr-3">🔽</span>
+            <span className="pr-3">{showItem ?"⬆️":"⬇️"}</span>
          </div>
 
              {

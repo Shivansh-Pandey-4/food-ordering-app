@@ -1,16 +1,21 @@
 import { FOOD_URL } from "../utils/constant";
+import { addItem } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {toast} from "react-toastify";
+
 
 const ItemList=(props)=>{
 
-   const {data}=props;
-   console.log(data);
+   const {data}=props;   
+      
+   const dispatch = useDispatch();
     
     return (
         <div>
            {
               data.map((item)=>{
                   return(
-                  <div className="rounded-2xl my-5 border hover:bg-blue-100 p-4 justify-between items-center" key={item.card.info.id}>
+                  <div className="rounded-2xl my-5 border hover:bg-blue-100 p-4 flex justify-between items-center" key={item.card.info.id}>
               <div className="text-lg mr-10 flex-1">
                 <h1 className="py-2 underline font-bold">
                   {item.card.info.name}
@@ -31,7 +36,11 @@ const ItemList=(props)=>{
                   src={FOOD_URL + item.card.info.imageId}
                   alt="food-img"
                 />
-                <button
+                <button onClick={()=>{
+                    dispatch(addItem(item.card.info));
+                    toast.success("Item successfully added to the cart")
+                    return; 
+                }}
                   className="cursor-pointer absolute bottom-0 right-1/2 translate-x-1/2 translate-y-1/2 bg-white border px-3 py-1 rounded-lg shadow hover:bg-green-300"
                 >
                     ADD

@@ -1,15 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { lazy ,Suspense } from "react";
+
 import Header from "./component/Header";
 import Body from "./component/Body";
-import Contact from "./component/Contact";
 import Error from "./component/Error";
-import About from "./component/About";
 import RestaurantMenu from "./component/RestaurantMenu"
-import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
-import UserContext from "./utils/UserContext";
 import Footer from "./component/Footer";
 
+const Contact = lazy(()=>import("./component/Contact"));
+const About = lazy(()=>import("./component/About"));
+
+import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
+import {Provider} from "react-redux";
+import { store } from "./app/store";
+import UserContext from "./utils/UserContext";
+import { ToastContainer } from "react-toastify";
 
 
 //lazy loading and code-splitting and on demand loading and chunking all are same.
@@ -19,14 +25,16 @@ import Footer from "./component/Footer";
 // react provide a component Suspense which need to wrap your component inside it.
 // <Suspense fallback={some jsx}> <Grocery/> </Suspense>....we need to pass fallback so till grocery component is not present till that time it will show that jsx. because it needs to fill the space of grocery till the code of grocery comes.
 
+
 const App=()=>{
     return (
         <div>
-        <UserContext.Provider value={{loggedInUser:"Shivansh"}}>
-          <Header></Header>
-          <Outlet/>
-          <Footer/>
-        </UserContext.Provider>
+         <Provider store={store} >
+            <Header></Header>
+            <Outlet/>
+            <Footer/>
+         </Provider>
+         <ToastContainer />
         </div>
     )
 };
@@ -43,11 +51,15 @@ const appRoute=createBrowserRouter([
             },
             {
                 path:"/about",
-                element:<About></About>
+                element:<Suspense fallback={<h1 className="flex text-2xl justify-center items-center">Loading...</h1>}>
+                    <About/>
+                </Suspense>
             },
             {
                 path:"/contact",
-                element:<Contact></Contact>
+                element:<Suspense fallback={<h1 className="text-2xl flex justify-center items-center">Loading...</h1>}>
+                     <Contact/>
+                </Suspense>
             },
             {
                 path:"/restaurant/:resId",
