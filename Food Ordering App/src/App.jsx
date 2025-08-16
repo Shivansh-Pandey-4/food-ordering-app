@@ -10,6 +10,7 @@ import Footer from "./component/Footer";
 
 const Contact = lazy(()=>import("./component/Contact"));
 const About = lazy(()=>import("./component/About"));
+const Cart = lazy(()=>import("./component/Cart"));
 
 import {createBrowserRouter,RouterProvider, Outlet} from "react-router";
 import {Provider} from "react-redux";
@@ -65,6 +66,10 @@ const appRoute=createBrowserRouter([
                 path:"/restaurant/:resId",
                 element:<RestaurantMenu></RestaurantMenu>
             },
+            {
+                path : "/cart",
+                element : <Cart/>
+            }
         ]
     },
    
