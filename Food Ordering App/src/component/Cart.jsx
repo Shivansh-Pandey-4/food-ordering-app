@@ -1,13 +1,16 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem, clearCart } from "../features/cart/cartSlice";
 import { FOOD_URL } from "../utils/constant";
 import CheckOut from "./CheckOut";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const Cart = ()=>{
 
     const cart = useSelector((state) => state.cart);
-    console.log(cart);
+    
+    const dispatch = useDispatch();
 
 
     if(cart.length == 0){
@@ -30,9 +33,9 @@ const Cart = ()=>{
             <div className="grid grid-cols-2 mx-30">
                 <div>
                {
-                   cart.map((item)=>{
+                   cart.map((item,index)=>{
                       return(
-                      <div className="flex border-b justify-center p-8 m-1 bg-gray-100 rounded-sm " key={item.id}>
+                      <div className="flex border-b justify-center p-8 m-1 bg-gray-100 rounded-sm " key={index}>
                   <div className="text-sm mr-10 w-100 font-semibold">
                     <h1 className="underline text-lg font-bold w-80 break-words ">
                       {item.name}
@@ -60,8 +63,14 @@ const Cart = ()=>{
                       src={FOOD_URL + item.imageId}
                       alt="food-img"
                       />
-                  <button className="border px-3 py-1 rounded-lg bg-lime-400 font-bold cursor-pointer hover:bg-red-500 ">Remove</button>
+
+                  <button onClick={()=>{
+                      dispatch(removeItem(item.id));
+                      toast.success("Item is removed from your cart successfully");
+                      return;
+                  }} className="border px-3 py-1 rounded-lg bg-lime-400 font-bold cursor-pointer hover:bg-red-500 ">Remove</button>
                   </div>
+                  
                 </div>  )
                   })
                 }
@@ -69,7 +78,12 @@ const Cart = ()=>{
                 <div className="flex justify-center">
                    <CheckOut/>
                 </div>
-             <button className="px-3 py-1 border w-full my-5 rounded-xl font-bold text-xl bg-amber-200 cursor-pointer hover:bg-amber-400">Clear Cart</button>
+             <button onClick={()=>{
+                dispatch(clearCart());
+                toast.success("Cart cleared successfully.");
+                return ;
+              }} 
+                className="px-3 py-1 border w-full my-5 rounded-xl font-bold text-xl bg-amber-200 cursor-pointer hover:bg-amber-400">Clear Cart</button>
             </div>
                   </div>
         )

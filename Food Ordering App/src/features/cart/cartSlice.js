@@ -10,7 +10,10 @@ const initialState = [];
               state.push(action.payload);
          },
          removeItem : (state,action) =>{
-             return state.filter((item) => item.id !== action.payload);
+              const index = state.findIndex((item) => item.id === action.payload);
+              if(index !== -1){
+                  state.splice(index,1);
+              }
          },
          clearCart : ()=>{
              return [];
